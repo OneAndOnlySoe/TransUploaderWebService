@@ -1,0 +1,24 @@
+﻿@model UploaderViewModel;
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Welcome</h1>
+
+<p>
+    
+    @using(Html.BeginForm("Index","Home", FormMethod.Post, new { enctype="multipart/form-data"}))
+    {   
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div>
+            @Html.TextBoxFor(m => m.UploadFile, new {type= "file"})<br /><br />
+            <input type="submit" value="Upload"/><br />
+            @ViewBag.Message
+            @Html.ValidationMessageFor(m => m.UploadFile,"",new { @class = "text-danger" })
+        </div>
+    }
+</p>
+
+
+
